@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eselman.contactsapp.R
 import com.eselman.contactsapp.view.adapters.ContactsAdapter
-import com.eselman.contactsapp.utils.viewmodel.ContactViewModel
+import com.eselman.contactsapp.viewmodel.ContactViewModel
 import kotlinx.android.synthetic.main.fragment_contacts_list.*
 import timber.log.Timber
 

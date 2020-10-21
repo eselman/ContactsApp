@@ -1,4 +1,4 @@
-package com.eselman.contactsapp.utils.viewmodel
+package com.eselman.contactsapp.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

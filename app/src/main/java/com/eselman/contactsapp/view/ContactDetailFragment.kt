@@ -12,7 +12,7 @@ import com.eselman.contactsapp.utils.loadImage
 import com.eselman.contactsapp.view.adapters.PersonalInfoAdapter
 import com.eselman.contactsapp.view.adapters.PersonalInfoRowType
 import com.eselman.contactsapp.view.adapters.PhoneType
-import com.eselman.contactsapp.utils.viewmodel.ContactViewModel
+import com.eselman.contactsapp.viewmodel.ContactViewModel
 import kotlinx.android.synthetic.main.fragment_contact_detail.*
 
 /**
