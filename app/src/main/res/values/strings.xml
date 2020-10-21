@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">ContactsApp</string>
+    <string name="label_info_type_phone">phone</string>
+    <string name="phone_type_work">work</string>
+    <string name="phone_type_home">home</string>
+    <string name="phone_type_mobile">mobile</string>
+    <string name="label_info_type_address">address</string>
+    <string name="label_info_type_birth_date">birth date</string>
+    <string name="label_info_type_email">email</string>
+    <string name="favorite_contacts_header_title">favorite contacts</string>
+    <string name="non_favorite_contacts_header_title">other contacts</string>
+    <string name="contacts_error_message">There was an error loading your contacts. Please try again</string>
+    <string name="retry_button_label">Retry</string>
+</resources>

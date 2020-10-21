@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contacts_nav"
+    app:startDestination="@id/contactsListFragment">
+
+    <fragment
+        android:id="@+id/contactsListFragment"
+        android:name="com.eselman.contactsapp.view.ContactsListFragment"
+        android:label="Contacts"
+        tools:layout="@layout/fragment_contacts_list" >
+        <action
+            android:id="@+id/actionGoToContactDetails"
+            app:destination="@id/contactDetailFragment" />
+        <action
+            android:id="@+id/actionGoToError"
+            app:destination="@id/contactErrorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contactDetailFragment"
+        android:name="com.eselman.contactsapp.view.ContactDetailFragment"
+        android:label="Contacts"
+        tools:layout="@layout/fragment_contact_detail">
+        <action
+            android:id="@+id/actionGoToContactList"
+            app:destination="@id/contactsListFragment" />
+        <argument
+            android:name="contactId"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/contactErrorFragment"
+        android:name="com.eselman.contactsapp.view.ContactErrorFragment"
+        android:label="Contacts"
+        tools:layout="@layout/fragment_contact_error" >
+        <action
+            android:id="@+id/actionGoToListFromError"
+            app:destination="@id/contactsListFragment" />
+    </fragment>
+</navigation>
