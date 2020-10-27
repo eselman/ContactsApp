@@ -15,7 +15,11 @@
             app:destination="@id/contactDetailFragment" />
         <action
             android:id="@+id/actionGoToError"
-            app:destination="@id/contactErrorFragment" />
+            app:destination="@id/contactErrorFragment"/>
+        <argument
+            android:name="fromError"
+            app:argType="boolean"
+            android:defaultValue="false" />
     </fragment>
     <fragment
         android:id="@+id/contactDetailFragment"
@@ -36,6 +40,10 @@
         tools:layout="@layout/fragment_contact_error" >
         <action
             android:id="@+id/actionGoToListFromError"
-            app:destination="@id/contactsListFragment" />
+            app:destination="@id/contactsListFragment">
+            <argument
+                android:name="fromError"
+                app:argType="boolean" />
+        </action>
     </fragment>
 </navigation>

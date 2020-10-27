@@ -7,19 +7,21 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eselman.contactsapp.R
+import com.eselman.contactsapp.injectors.Injector
 import com.eselman.contactsapp.model.Contact
 import com.eselman.contactsapp.utils.loadImage
 import com.eselman.contactsapp.view.adapters.PersonalInfoAdapter
 import com.eselman.contactsapp.view.adapters.PersonalInfoRowType
 import com.eselman.contactsapp.view.adapters.PhoneType
 import com.eselman.contactsapp.viewmodel.ContactViewModel
+import com.eselman.contactsapp.viewmodel.ContactViewModelFactory
 import kotlinx.android.synthetic.main.fragment_contact_detail.*
 
 /**
  * Created by Evangelina Selman
  */
 class ContactDetailFragment : Fragment() {
-    private val contactViewModel: ContactViewModel by activityViewModels()
+    private  val contactViewModel: ContactViewModel by activityViewModels { ContactViewModelFactory(Injector.provideRepository()) }
     private var contact: Contact? = null
     private lateinit var menuItem: MenuItem
 

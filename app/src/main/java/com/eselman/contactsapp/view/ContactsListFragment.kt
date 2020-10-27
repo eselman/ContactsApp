@@ -7,11 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.NavHostFragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eselman.contactsapp.R
+import com.eselman.contactsapp.injectors.Injector
 import com.eselman.contactsapp.view.adapters.ContactsAdapter
 import com.eselman.contactsapp.viewmodel.ContactViewModel
+import com.eselman.contactsapp.viewmodel.ContactViewModelFactory
 import kotlinx.android.synthetic.main.fragment_contacts_list.*
 import timber.log.Timber
 
@@ -19,7 +22,7 @@ import timber.log.Timber
  * Created by Evangelina Selman
  */
 class ContactsListFragment : Fragment() {
-    private  val contactViewModel: ContactViewModel by activityViewModels()
+    private  val contactViewModel: ContactViewModel by activityViewModels {ContactViewModelFactory(Injector.provideRepository())}
     private lateinit var contactsAdapter: ContactsAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -29,8 +32,11 @@ class ContactsListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        contactViewModel.getContacts()
-
+        arguments?.let {
+            if(ContactsListFragmentArgs.fromBundle(it).fromError) {
+                contactViewModel.getContacts()
+            }
+        }
         contactsRecyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             contactsAdapter = ContactsAdapter(mutableListOf(), context)
@@ -49,15 +55,12 @@ class ContactsListFragment : Fragment() {
             }
         })
 
-        contactViewModel.isError.observe(viewLifecycleOwner, {isError ->
-            if (isError) {
+        contactViewModel.error.observe(viewLifecycleOwner, {error ->
+            error?.let {
+                Timber.e("Exception loading contacts: ${it.errorMessage}")
                 val action = ContactsListFragmentDirections.actionGoToError()
                 findNavController(this).navigate(action)
             }
-        })
-
-        contactViewModel.errorMessage.observe(viewLifecycleOwner, {
-            Timber.e("Exception loading contacts: $it")
         })
 
         contactViewModel.isLoading.observe(viewLifecycleOwner, { isLoading ->

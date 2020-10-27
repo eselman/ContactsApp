@@ -21,7 +21,7 @@ class ContactErrorFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         errorMessageTextView.text = getString(R.string.contacts_error_message)
         retryButton.setOnClickListener {
-            val action = ContactErrorFragmentDirections.actionGoToListFromError()
+            val action = ContactErrorFragmentDirections.actionGoToListFromError(true)
             findNavController(this).navigate(action)
         }
     }
